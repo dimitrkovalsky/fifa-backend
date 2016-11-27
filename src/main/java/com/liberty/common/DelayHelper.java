@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DelayHelper {
 
-  private static int MIN_DELAY = 2000;
-  private static int MAX_DELAY = 5000;
+  private static final int MIN_DELAY = 2000;
+  private static final int MAX_DELAY = 5000;
 
   public static void wait(int millis) {
     int delay = new Random().nextInt(MAX_DELAY - MIN_DELAY) + MIN_DELAY + millis;

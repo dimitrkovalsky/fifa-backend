@@ -3,6 +3,7 @@ package com.liberty.config;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,29 +19,33 @@ import org.springframework.web.socket.config.annotation.EnableWebSocket;
 @ComponentScan("com.liberty")
 @EnableWebSocket
 @EnableMongoRepositories("com.liberty.repositories")
-public class Config extends AbstractMongoConfiguration  {
+public class Config extends AbstractMongoConfiguration {
 
-  public static final int POOL_SIZE = 5;
+    @Autowired
+    private DbConfiguration dbConfiguration;
 
-  @Override
-  protected String getDatabaseName() {
-    return "fifa17";
-  }
+    private static final String REPOSITORIES_PACKAGE = "com.liberty.model";
+    public static final int POOL_SIZE = 5;
 
-  @Override
-  public Mongo mongo() throws Exception {
-    return new MongoClient("127.0.0.1", 27017);
-  }
+    @Override
+    protected String getDatabaseName() {
+        return dbConfiguration.getDbName();
+    }
 
-  @Bean
-  public GridFsTemplate gridFsTemplate() throws Exception {
-    return new GridFsTemplate(mongoDbFactory(), mappingMongoConverter());
-  }
+    @Override
+    public Mongo mongo() throws Exception {
+        return new MongoClient(
+                dbConfiguration.getDbHost(), dbConfiguration.getDbPort()
+        );
+    }
 
-  @Override
-  protected String getMappingBasePackage() {
-    return "com.liberty.model";
-  }
+    @Bean
+    public GridFsTemplate gridFsTemplate() throws Exception {
+        return new GridFsTemplate(mongoDbFactory(), mappingMongoConverter());
+    }
 
-
+    @Override
+    protected String getMappingBasePackage() {
+        return REPOSITORIES_PACKAGE;
+    }
 }

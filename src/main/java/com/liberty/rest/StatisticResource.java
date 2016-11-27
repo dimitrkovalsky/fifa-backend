@@ -3,6 +3,7 @@ package com.liberty.rest;
 import com.liberty.model.PlayerStatistic;
 import com.liberty.repositories.PlayerStatisticRepository;
 
+import com.liberty.service.PlayerStatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,11 +21,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StatisticResource {
 
-  @Autowired
-  private PlayerStatisticRepository statisticRepository;
+    @Autowired
+    private PlayerStatisticsService playerStatisticsService;
 
-  @RequestMapping(path = "/{id}",method = RequestMethod.GET)
-  public PlayerStatistic get(@PathVariable Long id) {
-   return statisticRepository.findOne(id);
-  }
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public PlayerStatistic get(@PathVariable Long id) {
+        return playerStatisticsService.findById(id);
+    }
 }
