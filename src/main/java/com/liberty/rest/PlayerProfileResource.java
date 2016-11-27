@@ -1,8 +1,8 @@
 package com.liberty.rest;
 
 import com.liberty.model.PlayerProfile;
-import com.liberty.repositories.PlayerProfileRepository;
 
+import com.liberty.service.PlayerProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +19,16 @@ import java.util.List;
 @RequestMapping("/api/profile")
 public class PlayerProfileResource {
 
-  @Autowired
-  private PlayerProfileRepository playerProfileRepository;
+    @Autowired
+    private PlayerProfileService playerProfileService;
 
-  @RequestMapping(method = RequestMethod.GET)
-  public List<PlayerProfile> getAll() {
-    return playerProfileRepository.findAll();
-  }
+    @RequestMapping(method = RequestMethod.GET)
+    public List<PlayerProfile> getAll() {
+        return playerProfileService.findAll();
+    }
 
-  @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-  public PlayerProfile get(@PathVariable Long id) {
-    return playerProfileRepository.findOne(id);
-  }
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public PlayerProfile get(@PathVariable Long id) {
+        return playerProfileService.findById(id);
+    }
 }
