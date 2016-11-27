@@ -28,6 +28,8 @@
         <commons.version>3.4</commons.version>
         <spring-mongo.version>1.8.4.RELEASE</spring-mongo.version>
         <robotframework.version>3.0</robotframework.version>
+        <guava.version>20.0</guava.version>
+        <spring.hateoas.version>0.21.0.RELEASE</spring.hateoas.version>
     </properties>
 
 
@@ -101,7 +103,17 @@
             <version>3.6.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
 
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>${spring.hateoas.version}</version>
+        </dependency>
 
     </dependencies>
 
