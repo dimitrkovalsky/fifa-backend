@@ -18,6 +18,7 @@ import static com.liberty.util.ControllerUtils.splitRequestParameter;
  */
 @RestController
 @RequestMapping("/api/profiles")
+@CrossOrigin(origins = "*")
 public class PlayerProfileResource {
 
     @Autowired

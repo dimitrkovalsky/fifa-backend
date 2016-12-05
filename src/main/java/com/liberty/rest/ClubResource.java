@@ -12,6 +12,7 @@ import static com.liberty.util.ControllerUtils.splitRequestParameter;
 
 @RestController
 @RequestMapping("/api/clubs")
+@CrossOrigin(origins = "*")
 public class ClubResource {
 
     @Autowired

@@ -11,6 +11,7 @@ import static com.liberty.util.ControllerUtils.splitRequestParameter;
 
 @RestController
 @RequestMapping("/api/nations")
+@CrossOrigin(origins = "*")
 public class NationResource {
 
     @Autowired
